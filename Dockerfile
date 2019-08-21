@@ -1,0 +1,1 @@
+FROM arnoudbuzing/wolframengine:latest
