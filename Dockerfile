@@ -50,4 +50,19 @@ RUN curl -L https://ftp.gnu.org/gnu/emacs/emacs-26.2.tar.xz | tar xJ && \
     make install && \
 		cd .. && rm -rf *emacs*
 
+RUN emacs --batch \
+          --eval "(require 'package)" \
+          --eval '(setq package-archives (quote (("melpa" . "http://melpa.org/packages/") ("org-mode" . "http://orgmode.org/elpa/"))))' \
+          --eval "(package-initialize)" \
+          --eval "(unless package-archive-contents (package-refresh-contents))" \
+          --eval "(package-install 'use-package)" \
+          --eval "(setq use-package-always-ensure t)" \
+          --eval "(use-package ox-latex)" \
+          --eval "(use-package ob-mathematica :ensure org-plus-contrib)" \
+          --eval "(use-package htmlize)" \
+          --eval "(use-package dash)" \
+          --eval "(use-package request)" \
+          --eval "(use-package json)"
+
+
 CMD emacs
