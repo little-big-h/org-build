@@ -36,6 +36,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq && \
             libxml2-dev \
             openssh-client \
             python \
+						python-pygments \
             texinfo \
             xaw3dg-dev \
             zlib1g-dev \
@@ -48,3 +49,5 @@ RUN curl -L https://ftp.gnu.org/gnu/emacs/emacs-26.2.tar.xz | tar xJ && \
     make -j $(nproc) && \
     make install && \
 		cd .. && rm -rf *emacs*
+
+CMD emacs
